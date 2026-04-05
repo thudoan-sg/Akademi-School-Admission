@@ -1,15 +1,12 @@
 import { Outlet } from "react-router-dom";
 
-function StudentLayout() {
-  return (
-    <div>
-      <h2>STUDENT NAVBAR</h2>
-      <div style={{ display: "flex" }}>
-        <div>STUDENT SIDEBAR</div>
-        <Outlet />
-      </div>
-    </div>
-  );
+function StudentLayout({ user }) {
+    return (
+        <>
+            <h2>Student Layout</h2>
+            <Outlet context={{ user }} />
+        </>
+    );
 }
 
 export default StudentLayout;

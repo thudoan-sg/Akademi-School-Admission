@@ -26,6 +26,7 @@ function Login({ setUser }) {
 
     if (foundUser) {
       setUser(foundUser);
+      localStorage.setItem("user", JSON.stringify(foundUser));
       navigate(`/${foundUser.role}`);
     } else {
       alert("Sai tài khoản hoặc mật khẩu");

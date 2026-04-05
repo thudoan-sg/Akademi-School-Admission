@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "../pages/auth/Login";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 import AdminLayout from "../layouts/admin/AdminLayout";
 import ManageStudents from "../pages/admin/ManageStudents";
@@ -24,7 +25,11 @@ function AppRoutes({ user, setUser }) {
                 <Route path="/" element={<Login setUser={setUser} />} />
 
                 {/* ADMIN */}
-                <Route path="/admin" element={<AdminLayout />}>
+                <Route path="/admin" element={
+                    <ProtectedRoute user={user} allowedRoles={["admin"]}>
+                        <AdminLayout />
+                    </ProtectedRoute>
+                }>
                     <Route index element={<h1>Admin Dashboard</h1>} />
                     <Route path="students" element={<ManageStudents />} />
                     <Route path="teachers" element={<ManageTeachers />} />
@@ -32,13 +37,21 @@ function AppRoutes({ user, setUser }) {
                 </Route>
 
                 {/* TEACHER */}
-                <Route path="/teacher" element={<TeacherLayout />}>
+                <Route path="/teacher" element={
+                    <ProtectedRoute user={user} allowedRoles={["teacher"]}>
+                        <TeacherLayout />
+                    </ProtectedRoute>
+                }>
                     <Route path="scores" element={<ManageScores />} />
                     <Route path="materials" element={<ManageMaterials />} />
                 </Route>
 
                 {/* STUDENT */}
-                <Route path="/student" element={<StudentLayout />}>
+                <Route path="/student" element={
+                    <ProtectedRoute user={user} allowedRoles={["student"]}>
+                        <StudentLayout user={user} />
+                    </ProtectedRoute>
+                }>
                     <Route path="profile" element={<StudentProfile />} />
                     <Route path="schedule" element={<StudentSchedule />} />
                     <Route path="scores" element={<StudentScores />} />
