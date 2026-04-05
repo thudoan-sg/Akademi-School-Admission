@@ -17,11 +17,11 @@ import StudentSchedule from "../pages/student/StudentSchedule";
 import StudentScores from "../pages/student/StudentScores";
 import StudentMaterials from "../pages/student/StudentMaterials";
 
-function AppRoutes() {
+function AppRoutes({ user, setUser }) {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<Login setUser={setUser} />} />
 
                 {/* ADMIN */}
                 <Route path="/admin" element={<AdminLayout />}>
