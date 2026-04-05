@@ -1,15 +1,15 @@
-import { Outlet } from "react-router-dom";
+import StudentSidebar from "./StudentSidebar";
+import StudentNavbar from "./StudentNavbar";
 
-function StudentLayout() {
+export default function StudentLayout({ children }) {
   return (
-    <div>
-      <h2>STUDENT NAVBAR</h2>
-      <div style={{ display: "flex" }}>
-        <div>STUDENT SIDEBAR</div>
-        <Outlet />
+    <div className="flex h-screen bg-gray-100">
+      <StudentSidebar />
+
+      <div className="flex-1 flex flex-col">
+        <StudentNavbar />
+        <div className="p-6 overflow-auto">{children}</div>
       </div>
     </div>
   );
 }
-
-export default StudentLayout;
