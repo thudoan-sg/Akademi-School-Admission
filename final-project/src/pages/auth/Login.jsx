@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Form, Input, Button, Card } from "antd";
 
 function Login({ setUser }) {
   const [username, setUsername] = useState("");
@@ -34,21 +35,38 @@ function Login({ setUser }) {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="login-bg">
 
-      <input
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
+      <Card className="login-card">
+        <Form layout="vertical">
+          <h2 style={{ textAlign: "center", marginBottom: 20 }}>Log In</h2>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+          <Form.Item label="Username">
+            <Input
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Item>
 
-      <button onClick={handleLogin}>Login</button>
+          <Form.Item label="Password">
+            <Input.Password
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Item>
+
+          <Button
+            type="primary"
+            block
+            style={{ backgroundColor: "black", borderColor: "black" }}
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
+        </Form>
+      </Card>
     </div>
   );
 }

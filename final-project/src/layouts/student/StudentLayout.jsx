@@ -4,18 +4,18 @@ import StudentNavbar from "./StudentNavbar";
 
 function StudentLayout({ user }) {
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <StudentSidebar />
+    <div>
+      <div className="top-banner" />
 
-      {/* Main */}
-      <div className="flex-1 flex flex-col">
-        {/* Navbar */}
-        <StudentNavbar />
+      <div style={{ display: "flex", height: "calc(100vh - 150px)" }}>
+        <StudentSidebar />
 
-        {/* Nội dung */}
-        <div className="p-6">
-          <Outlet context={{ user }} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <StudentNavbar />
+
+          <div style={{ padding: 24 }}>
+            <Outlet context={{ user }} />
+          </div>
         </div>
       </div>
     </div>
