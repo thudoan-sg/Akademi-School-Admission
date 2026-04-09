@@ -11,28 +11,28 @@ function StudentProfile() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // fetch students
+                
                 const resStudents = await fetch(
                     "https://mindx-mockup-server.vercel.app/api/resources/students?apiKey=69ca789b3bb225ca08190764"
                 );
                 const dataStudents = await resStudents.json();
                 const students = dataStudents.data.data;
 
-                // tìm student hiện tại
+                
                 const currentStudent = students.find(
                     (s) => Number(s.id) === Number(user.studentId)
                 );
 
                 setStudent(currentStudent);
 
-                // fetch teachers
+            
                 const resTeachers = await fetch(
                     "https://mindx-mockup-server.vercel.app/api/resources/teachers?apiKey=69ca789b3bb225ca08190764"
                 );
                 const dataTeachers = await resTeachers.json();
                 const teachers = dataTeachers.data.data;
 
-                // tìm GVCN
+                
                 const homeroomTeacher = teachers.find(
                     (t) => Number(t.id) === Number(currentStudent?.homeroomTeacherId)
                 );
