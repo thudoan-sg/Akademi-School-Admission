@@ -90,6 +90,7 @@ function ManageSchedule() {
 
   return (
     <div style={{ padding: 24 }}>
+      <h2 className="section-title">Manage Schedule</h2>
       <div
         style={{
           background: "#fff",
@@ -98,7 +99,7 @@ function ManageSchedule() {
           boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
         }}
       >
-        <h2 style={{ marginBottom: 16 }}>Manage Schedule</h2>
+        
 
         <Button
           type="primary"
@@ -133,7 +134,9 @@ function ManageSchedule() {
               title: "Actions",
               render: (_, record) => (
                 <>
-                  <Button onClick={() => setEditingItem(record)}>Edit</Button>
+                  <Button 
+                  style= {{ color: "#20c997", borderColor: "#20c997" }}
+                  onClick={() => setEditingItem(record)}>Edit</Button>
                   <Button
                     danger
                     style={{ marginLeft: 8 }}

@@ -60,7 +60,7 @@ function Login({ setUser }) {
           <Button
             type="primary"
             block
-            style={{ backgroundColor: "black", borderColor: "black" }}
+            style={{ backgroundColor: "#20c997", borderColor: "#20c997" }}
             onClick={handleLogin}
           >
             Login
