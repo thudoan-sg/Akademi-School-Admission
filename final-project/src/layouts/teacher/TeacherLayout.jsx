@@ -1,12 +1,19 @@
 import { Outlet } from "react-router-dom";
+import TeacherSidebar from "./TeacherSidebar";
 
 function TeacherLayout() {
   return (
-    <div>
-      <h2>TEACHER NAVBAR</h2>
-      <div style={{ display: "flex" }}>
-        <div>TEACHER SIDEBAR</div>
-        <Outlet />
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      
+      <TeacherSidebar />
+
+      <div style={{ flex: 1, position: "relative" }}>
+        
+        <div className="dashboard-bg" />
+
+        <div style={{ padding: 24, position: "relative", zIndex: 1 }}>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
