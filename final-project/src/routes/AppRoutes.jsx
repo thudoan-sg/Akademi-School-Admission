@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Landing from "../pages/landing/Landing";
 import Login from "../pages/auth/Login";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 import AdminLayout from "../layouts/admin/AdminLayout";
+import AdminDashboard from "../pages/admin/Dashboard";
 import ManageStudents from "../pages/admin/ManageStudents";
 import ManageTeachers from "../pages/admin/ManageTeachers";
 import ManageSchedule from "../pages/admin/ManageSchedule";
@@ -22,15 +24,17 @@ function AppRoutes({ user, setUser }) {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login setUser={setUser} />} />
+                <Route path="/" element={<Landing/>} />
+
+                <Route path="/login" element={<Login setUser={setUser} />} />
 
                 {/* ADMIN */}
                 <Route path="/admin" element={
                     <ProtectedRoute user={user} allowedRoles={["admin"]}>
-                        <AdminLayout />
+                        <AdminLayout setUser={setUser} />
                     </ProtectedRoute>
                 }>
-                    <Route index element={<h1>Admin Dashboard</h1>} />
+                    <Route index element={<AdminDashboard />} />
                     <Route path="students" element={<ManageStudents />} />
                     <Route path="teachers" element={<ManageTeachers />} />
                     <Route path="schedule" element={<ManageSchedule />} />
@@ -49,7 +53,7 @@ function AppRoutes({ user, setUser }) {
                 {/* STUDENT */}
                 <Route path="/student" element={
                     <ProtectedRoute user={user} allowedRoles={["student"]}>
-                        <StudentLayout user={user} />
+                        <StudentLayout user={user} setUser={setUser}  />
                     </ProtectedRoute>
                 }>
                     <Route path="profile" element={<StudentProfile />} />

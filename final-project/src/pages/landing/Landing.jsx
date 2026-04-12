@@ -1,19 +1,19 @@
-import './landing.css'; 
+
 
 function Landing() {
   return (
+    
     <>
       
-      <header className="header">
+      <header className="landing-header">
         <div className="auth-buttons">
           <a href="/login" className="btn login">Log in</a>
-          <a href="/signup" className="btn signup">Sign up</a>
         </div>
       </header>
 
       
-      <section className="text">
-        <div className="overlay">
+      <section className="landing-text">
+        <div className="landing-overlay">
           <h1>Welcome to</h1>
           <h2>Our International School</h2>
           <p>

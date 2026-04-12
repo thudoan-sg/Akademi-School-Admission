@@ -1,16 +1,16 @@
 body {
   margin: 0;
-  font-family: sans-serif;
-  background-color: #f6f8f9; 
+  font-family: 'Poppins', sans-serif;
+  background-color: #f6f8f9;
 }
 
 #root {
   width: 100%;
-  margin: 0 ;
+  margin: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
+
 }
 
 .login-bg {
@@ -24,10 +24,17 @@ body {
 }
 
 .top-banner {
-  height: 150px;
-  width:100%;
-  background: url("../public/school.jpg") no-repeat center;
+   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: url("../public/img26.jpg") no-repeat center;
   background-size: cover;
+  z-index: 0;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  backdrop-filter: blur(4px);
 }
 
 .login-card {
@@ -43,16 +50,12 @@ body {
   left: 0;
   width: 100%;
   height: 200px;
-
-  background: url("/school.jpg") no-repeat center;
+  background: url("../public/img26.jpg") no-repeat center;
   background-size: cover;
-
-  
   z-index: 0;
-
-
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  backdrop-filter: blur(4px);
 }
 
 .logo {
@@ -67,8 +70,89 @@ body {
 
 .section-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 40px;
+  font-weight: 1000;
+  color: #20c997; 
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  margin: 40px 0 20px 20px;
   letter-spacing: 0.5px;
+}
+
+
+
+.landing-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px;
+  z-index: 10;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  text-decoration: none;
+  color: #198f6b;
+  background-color: rgb(228, 230, 237);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #20c997;
+  color: white;
+}
+
+
+
+.landing-text {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/school.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+
+
+.landing-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0)
+  );
+
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+}
+
+.login-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0)
+  );
+
+  display: flex;
+  justify-content: center;   
+  align-items: center; 
 }

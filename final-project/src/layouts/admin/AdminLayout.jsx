@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
 
-function AdminLayout() {
+function AdminLayout({ setUser }) {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       
-      <AdminSidebar />
+      <AdminSidebar setUser={setUser} />
 
   
       <div style={{ flex: 1, position: "relative" }}>
