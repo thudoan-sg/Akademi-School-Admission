@@ -25,7 +25,7 @@ function AppRoutes({ user, setUser }) {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Landing/>} />
+                <Route path="/" element={<Landing />} />
 
                 <Route path="/login" element={<Login setUser={setUser} />} />
 
@@ -40,13 +40,15 @@ function AppRoutes({ user, setUser }) {
                     <Route path="teachers" element={<ManageTeachers />} />
                     <Route path="schedule" element={<ManageSchedule />} />
                 </Route>
-
                 {/* TEACHER */}
-                <Route path="/teacher" element={
-                    <ProtectedRoute user={user} allowedRoles={["teacher"]}>
-                        <TeacherLayout />
-                    </ProtectedRoute>
-                }>
+                <Route
+                    path="/teacher"
+                    element={
+                        <ProtectedRoute user={user} allowedRoles={["teacher"]}>
+                            <TeacherLayout setUser={setUser} />   
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<TeacherDashboard />} />
                     <Route path="scores" element={<ManageScores />} />
                     <Route path="materials" element={<ManageMaterials />} />
@@ -55,7 +57,7 @@ function AppRoutes({ user, setUser }) {
                 {/* STUDENT */}
                 <Route path="/student" element={
                     <ProtectedRoute user={user} allowedRoles={["student"]}>
-                        <StudentLayout user={user} setUser={setUser}  />
+                        <StudentLayout user={user} setUser={setUser} />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="profile" replace />} />
