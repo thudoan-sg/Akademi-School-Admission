@@ -35,7 +35,7 @@ function StudentSidebar({ setUser }) {
   ];
   const handleLogout = () => {
     setUser(null);
-    navigate("/");
+    navigate("/login");
   };
 
   return (
