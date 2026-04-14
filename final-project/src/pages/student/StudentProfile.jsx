@@ -53,7 +53,7 @@ function StudentProfile() {
       >
         <div style={{ display: "flex", gap: 24 }}>
 
-          {/* LEFT - AVATAR */}
+     
           <div
             style={{
               width: 250,

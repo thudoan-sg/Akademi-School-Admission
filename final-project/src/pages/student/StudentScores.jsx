@@ -16,7 +16,7 @@ function StudentScores() {
         const res = await fetch(API);
         const data = await res.json();
 
-        // 👉 nếu có user.id thì filter theo student
+       
         const filtered = data.data.data.filter(
           (item) => item.student === user?.name
         );
