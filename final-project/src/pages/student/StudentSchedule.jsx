@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { Table } from "antd";
 
 function StudentSchedule() {
   const { user } = useOutletContext();
 
-  const [student, setStudent] = useState(null);
-  const [teachers, setTeachers] = useState([]); // FIX
+  const [teachers, setTeachers] = useState([]);
   const [schedule, setSchedule] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,8 +21,6 @@ function StudentSchedule() {
         const currentStudent = students.find(
           (s) => Number(s.id) === Number(user.studentId)
         );
-
-        setStudent(currentStudent);
 
         const resTeachers = await fetch(
           "https://mindx-mockup-server.vercel.app/api/resources/teachers?apiKey=69ca789b3bb225ca08190764"
@@ -55,23 +53,44 @@ function StudentSchedule() {
 
   return (
     <div>
-      <h1>Student Schedule</h1>
+      <h1 className="section-title">Student Schedule</h1>
 
-      {schedule.map((s) => {
-        const teacher = teachers.find(
-          (t) => Number(t.id) === Number(s.teacherId)
-        );
-
-        return (
-          <div key={s.id}>
-            <p>Subject: {s.subject}</p>
-            <p>Teacher: {teacher?.name}</p>
-            <p>Day: {s.day}</p>
-            <p>Time: {s.time}</p>
-            <hr />
-          </div>
-        );
-      })}
+      <Table
+        dataSource={schedule}
+        rowKey="id"
+        pagination={{ pageSize: 5 }}
+        style={{
+          background: "#fff",
+          borderRadius: 16,
+          padding: 16,
+          boxShadow: "0 8px 24px rgba(0,0,0,0.05)"
+        }}
+        columns={[
+          {
+            title: "Subject",
+            dataIndex: "subject",
+          },
+          {
+            title: "Teacher",
+            render: (_, record) => {
+              const t = teachers.find(
+                (x) => Number(x.id) === Number(record.teacherId)
+              );
+              return t?.name || "Unknown";
+            },
+          },
+          {
+            title: "Day",
+            dataIndex: "day",
+            align: "center"
+          },
+          {
+            title: "Time",
+            dataIndex: "time",
+            align: "center"
+          },
+        ]}
+      />
     </div>
   );
 }

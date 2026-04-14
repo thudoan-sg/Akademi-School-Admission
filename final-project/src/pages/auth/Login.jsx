@@ -36,37 +36,39 @@ function Login({ setUser }) {
 
   return (
     <div className="login-bg">
+      <div className="login-overlay">
 
-      <Card className="login-card">
-        <Form layout="vertical">
-          <h2 style={{ textAlign: "center", marginBottom: 20 }}>Log In</h2>
+        <Card className="login-card">
+          <Form layout="vertical">
+            <h2 style={{ textAlign: "center", marginBottom: 20 }}>Log In</h2>
 
-          <Form.Item label="Username">
-            <Input
-              placeholder="Enter your username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </Form.Item>
+            <Form.Item label="Username">
+              <Input
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Form.Item>
 
-          <Form.Item label="Password">
-            <Input.Password
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Item>
+            <Form.Item label="Password">
+              <Input.Password
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Item>
 
-          <Button
-            type="primary"
-            block
-            style={{ backgroundColor: "#20c997", borderColor: "#20c997" }}
-            onClick={handleLogin}
-          >
-            Login
-          </Button>
-        </Form>
-      </Card>
+            <Button
+              type="primary"
+              block
+              style={{ backgroundColor: "#20c997", borderColor: "#20c997" }}
+              onClick={handleLogin}
+            >
+              Login
+            </Button>
+          </Form>
+        </Card>
+      </div>
     </div>
   );
 }

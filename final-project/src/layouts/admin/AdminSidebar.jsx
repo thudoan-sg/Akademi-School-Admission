@@ -1,4 +1,4 @@
-import { Menu } from "antd";
+import { Menu, Button } from "antd";
 import {
   DashboardOutlined,
   UserOutlined,
@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function AdminSidebar() {
+function AdminSidebar({ setUser }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,13 +33,17 @@ function AdminSidebar() {
       label: "Schedule",
     },
   ];
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+  };
 
   return (
     <div
       style={{
-        width: 200,
+        width: 260,
         background: "#fff",
-        padding: 12,
+        padding: 16,
         borderRight: "1px solid #eee",
       }}
     >
@@ -51,6 +55,13 @@ function AdminSidebar() {
         items={items}
         onClick={({ key }) => navigate(key)}
       />
+      <Button
+        danger
+        style={{ marginTop: 20, width: "100%" }}
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
     </div>
   );
 }
