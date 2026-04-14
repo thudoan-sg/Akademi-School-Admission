@@ -5,7 +5,6 @@ import { Table } from "antd";
 function StudentSchedule() {
   const { user } = useOutletContext();
 
-  const [student, setStudent] = useState(null);
   const [teachers, setTeachers] = useState([]);
   const [schedule, setSchedule] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,8 +21,6 @@ function StudentSchedule() {
         const currentStudent = students.find(
           (s) => Number(s.id) === Number(user.studentId)
         );
-
-        setStudent(currentStudent);
 
         const resTeachers = await fetch(
           "https://mindx-mockup-server.vercel.app/api/resources/teachers?apiKey=69ca789b3bb225ca08190764"

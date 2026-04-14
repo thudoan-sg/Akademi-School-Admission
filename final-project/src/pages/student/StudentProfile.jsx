@@ -48,7 +48,6 @@ function StudentProfile() {
           background: "#fff",
           padding: 32,
           borderRadius: 20,
-          borderRadius: 20,
           boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
         }}
       >
