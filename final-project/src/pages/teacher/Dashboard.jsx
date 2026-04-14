@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function TeacherDashboard() {
   const [stats, setStats] = useState({
@@ -42,15 +43,15 @@ function TeacherDashboard() {
         <h2 className="section-title">Quick Actions</h2>
 
         <div style={{ display: "flex", gap: 16 }}>
-          <ActionCard text="Add Score" />
-          <ActionCard text="Upload Material" />
+          <ActionCard text="Add Score" to="/teacher/scores" />
+          <ActionCard text="Upload Material" to="/teacher/materials" />
         </div>
       </div>
     </div>
   );
 }
 
-/* reuse UI giống Admin */
+/* CARD */
 function Card({ title, value }) {
   return (
     <div style={{
@@ -66,18 +67,24 @@ function Card({ title, value }) {
   );
 }
 
-function ActionCard({ text }) {
+/* ACTION */
+function ActionCard({ text, to }) {
+  const navigate = useNavigate();
+
   return (
-    <div style={{
-      padding: 16,
-      borderRadius: 12,
-      background: "#20c997",
-      color: "#fff",
-      cursor: "pointer",
-      flex: 1,
-      textAlign: "center",
-      fontWeight: 500
-    }}>
+    <div
+      onClick={() => navigate(to)}
+      style={{
+        padding: 16,
+        borderRadius: 12,
+        background: "#20c997",
+        color: "#fff",
+        cursor: "pointer",
+        flex: 1,
+        textAlign: "center",
+        fontWeight: 500
+      }}
+    >
       {text}
     </div>
   );
