@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 
-function TeacherLayout() {
+function TeacherLayout({ setUser }) {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       
-      <TeacherSidebar />
+      <TeacherSidebar setUser={setUser} />
 
       <div style={{ flex: 1, position: "relative" }}>
         

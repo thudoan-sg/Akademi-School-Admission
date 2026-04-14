@@ -1,12 +1,12 @@
-import { Menu } from "antd";
+import { Menu, Button } from "antd";
 import {
   DashboardOutlined,
-  FileTextOutlined,
   BookOutlined,
+  FileTextOutlined,
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function TeacherSidebar() {
+function TeacherSidebar({ setUser }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,22 +18,27 @@ function TeacherSidebar() {
     },
     {
       key: "/teacher/scores",
-      icon: <FileTextOutlined />,
-      label: "Scores",
+      icon: <BookOutlined />,
+      label: "Manage Scores",
     },
     {
       key: "/teacher/materials",
-      icon: <BookOutlined />,
+      icon: <FileTextOutlined />,
       label: "Materials",
     },
   ];
 
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+  };
+
   return (
     <div
       style={{
-        width: 200,
+        width: 260,
         background: "#fff",
-        padding: 12,
+        padding: 16,
         borderRight: "1px solid #eee",
       }}
     >
@@ -45,6 +50,14 @@ function TeacherSidebar() {
         items={items}
         onClick={({ key }) => navigate(key)}
       />
+
+      <Button
+        danger
+        style={{ marginTop: 20, width: "100%" }}
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
     </div>
   );
 }
