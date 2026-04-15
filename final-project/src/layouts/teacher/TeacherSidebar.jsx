@@ -3,6 +3,7 @@ import {
   DashboardOutlined,
   BookOutlined,
   FileTextOutlined,
+  CalendarOutlined, // 👈 thêm
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -25,6 +26,11 @@ function TeacherSidebar({ setUser }) {
       key: "/teacher/materials",
       icon: <FileTextOutlined />,
       label: "Materials",
+    },
+    {
+      key: "/teacher/schedule", // 🔥 NEW
+      icon: <CalendarOutlined />,
+      label: "Schedule",
     },
   ];
 
@@ -62,4 +68,4 @@ function TeacherSidebar({ setUser }) {
   );
 }
 
-export default TeacherSidebar;
+export default TeacherSidebar;  
