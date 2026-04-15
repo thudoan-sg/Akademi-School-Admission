@@ -30,22 +30,27 @@ function AppRoutes({ user, setUser }) {
                 <Route path="/login" element={<Login setUser={setUser} />} />
 
                 {/* ADMIN */}
-                <Route path="/admin" element={
-                    <ProtectedRoute user={user} allowedRoles={["admin"]}>
-                        <AdminLayout setUser={setUser} />
-                    </ProtectedRoute>
-                }>
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute user={user} allowedRoles={["admin"]}>
+                            <AdminLayout setUser={setUser} />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<AdminDashboard />} />
                     <Route path="students" element={<ManageStudents />} />
                     <Route path="teachers" element={<ManageTeachers />} />
                     <Route path="schedule" element={<ManageSchedule />} />
                 </Route>
+
                 {/* TEACHER */}
                 <Route
                     path="/teacher"
                     element={
                         <ProtectedRoute user={user} allowedRoles={["teacher"]}>
-                            <TeacherLayout setUser={setUser} />   
+                            {/* 🔥 FIX QUAN TRỌNG */}
+                            <TeacherLayout user={user} setUser={setUser} />
                         </ProtectedRoute>
                     }
                 >
@@ -55,11 +60,14 @@ function AppRoutes({ user, setUser }) {
                 </Route>
 
                 {/* STUDENT */}
-                <Route path="/student" element={
-                    <ProtectedRoute user={user} allowedRoles={["student"]}>
-                        <StudentLayout user={user} setUser={setUser} />
-                    </ProtectedRoute>
-                }>
+                <Route
+                    path="/student"
+                    element={
+                        <ProtectedRoute user={user} allowedRoles={["student"]}>
+                            <StudentLayout user={user} setUser={setUser} />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<Navigate to="profile" replace />} />
                     <Route path="profile" element={<StudentProfile />} />
                     <Route path="schedule" element={<StudentSchedule />} />

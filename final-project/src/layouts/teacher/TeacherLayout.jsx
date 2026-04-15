@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 
-function TeacherLayout({ setUser }) {
+function TeacherLayout({ user, setUser }) {
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       
@@ -12,7 +12,8 @@ function TeacherLayout({ setUser }) {
         <div className="dashboard-bg" />
 
         <div style={{ padding: 24, position: "relative", zIndex: 1 }}>
-          <Outlet />
+          {/* 🔥 FIX QUAN TRỌNG */}
+          <Outlet context={{ user }} />
         </div>
       </div>
     </div>

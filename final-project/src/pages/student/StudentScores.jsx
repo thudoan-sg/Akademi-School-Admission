@@ -16,9 +16,9 @@ function StudentScores() {
         const res = await fetch(API);
         const data = await res.json();
 
-       
+        // ✅ Filter theo studentId
         const filtered = data.data.data.filter(
-          (item) => item.student === user?.name
+          (item) => Number(item.studentId) === Number(user?.id)
         );
 
         setScores(filtered);
@@ -53,6 +53,7 @@ function StudentScores() {
             { title: "Subject", dataIndex: "subject" },
             { title: "Score", dataIndex: "score" },
           ]}
+          pagination={false}
         />
       </div>
     </div>
