@@ -14,7 +14,7 @@ import TeacherLayout from "../layouts/teacher/TeacherLayout";
 import TeacherDashboard from "../pages/teacher/Dashboard";
 import ManageScores from "../pages/teacher/ManageScores";
 import ManageMaterials from "../pages/teacher/ManageMaterials";
-import TeacherSchedule from "../pages/teacher/TeacherSchedule"; // 🔥 THÊM
+import TeacherSchedule from "../pages/teacher/ManageSchedule"; // 🔥 THÊM
 
 import StudentLayout from "../layouts/student/StudentLayout";
 import StudentProfile from "../pages/student/StudentProfile";
