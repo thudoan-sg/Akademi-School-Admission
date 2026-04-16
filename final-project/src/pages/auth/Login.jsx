@@ -8,39 +8,75 @@ function Login({ setUser }) {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const res = await fetch("https://mindx-mockup-server.vercel.app/api/resources/users?apiKey=69ca789b3bb225ca08190764"
-
-    );
-
-    const result = await res.json();
-    console.log(result);
-
-    const users = Array.isArray(result) ? result : result.data.data;
-
-
-    const foundUser = users.find((u) => {
-      return (
-        u.username === username.trim() &&
-        u.password === password.trim()
+    try {
+      const res = await fetch(
+        "https://mindx-mockup-server.vercel.app/api/resources/users?apiKey=69ca789b3bb225ca08190764"
       );
-    });
 
-    if (foundUser) {
-      setUser(foundUser);
-      localStorage.setItem("user", JSON.stringify(foundUser));
-      navigate(`/${foundUser.role}`);
-    } else {
-      alert("Sai tài khoản hoặc mật khẩu");
+      const result = await res.json();
+      const users = Array.isArray(result) ? result : result.data.data;
+
+      const foundUser = users.find(
+        (u) =>
+          u.username === username.trim() &&
+          u.password === password.trim()
+      );
+
+      if (foundUser) {
+        let finalUser = { ...foundUser };
+
+        // 👨‍🏫 TEACHER
+        if (foundUser.role === "teacher") {
+          if (foundUser.username === "teacher1") {
+            finalUser.subject = "Math";
+            finalUser.id = 1;
+          }
+
+          if (foundUser.username === "teacher2") {
+            finalUser.subject = "English";
+            finalUser.id = 2;
+          }
+        }
+
+        // 👨‍🎓 STUDENT
+        if (foundUser.role === "student") {
+          if (foundUser.username === "student1") {
+            finalUser.id = 1;
+          }
+
+          if (foundUser.username === "student2") {
+            finalUser.id = 2;
+          }
+
+          if (foundUser.username === "student3") {
+            finalUser.id = 3;
+          }
+        }
+
+        // 🔍 DEBUG
+        console.log("FINAL USER:", finalUser);
+
+        setUser(finalUser);
+        localStorage.setItem("user", JSON.stringify(finalUser));
+
+        navigate(`/${finalUser.role}`);
+      } else {
+        alert("Sai tài khoản hoặc mật khẩu");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Có lỗi xảy ra!");
     }
   };
 
   return (
     <div className="login-bg">
       <div className="login-overlay">
-
         <Card className="login-card">
           <Form layout="vertical">
-            <h2 style={{ textAlign: "center", marginBottom: 20 }}>Log In</h2>
+            <h2 style={{ textAlign: "center", marginBottom: 20 }}>
+              Log In
+            </h2>
 
             <Form.Item label="Username">
               <Input
@@ -61,7 +97,10 @@ function Login({ setUser }) {
             <Button
               type="primary"
               block
-              style={{ backgroundColor: "#20c997", borderColor: "#20c997" }}
+              style={{
+                backgroundColor: "#20c997",
+                borderColor: "#20c997",
+              }}
               onClick={handleLogin}
             >
               Login

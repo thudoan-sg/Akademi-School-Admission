@@ -1,56 +1,93 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const STUDENT_API = "https://mindx-mockup-server.vercel.app/api/resources/students?apiKey=69ca789b3bb225ca08190764";
-const MATERIAL_API = "https://mindx-mockup-server.vercel.app/api/resources/materials?apiKey=69ca789b3bb225ca08190764";
-const SCORE_API = "https://mindx-mockup-server.vercel.app/api/resources/scores?apiKey=69ca789b3bb225ca08190764";
-
-/** API trả { data: { data: [...] } } — giống ManageStudents / ManageTeachers */
-function listFromResourceResponse(res) {
-  const rows = res?.data?.data?.data;
-  return Array.isArray(rows) ? rows : [];
-}
-
-export default function Dashboard() {
-  const [students, setStudents] = useState([]);
-  const [materials, setMaterials] = useState([]);
-  const [scores, setScores] = useState([]);
+function TeacherDashboard() {
+  const [stats, setStats] = useState({
+    students: 0,
+    materials: 0,
+  });
 
   useEffect(() => {
-    axios.get(STUDENT_API).then((res) => {
-      setStudents(listFromResourceResponse(res));
-    });
+    const fetchData = async () => {
+      try {
+        const [studentsRes, materialsRes] = await Promise.all([
+          fetch("https://mindx-mockup-server.vercel.app/api/resources/students?apiKey=69ca789b3bb225ca08190764"),
+          fetch("https://mindx-mockup-server.vercel.app/api/resources/materials?apiKey=69ca789b3bb225ca08190764"),
+        ]);
 
-    axios.get(MATERIAL_API).then((res) => {
-      setMaterials(listFromResourceResponse(res));
-    });
+        const studentsData = await studentsRes.json();
+        const materialsData = await materialsRes.json();
 
-    axios.get(SCORE_API).then((res) => {
-      setScores(listFromResourceResponse(res));
-    });
+        setStats({
+          students: studentsData?.data?.data?.length || 0,
+          materials: materialsData?.data?.data?.length || 0,
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  const card = {
-    flex: 1,
-    minWidth: 160,
-    padding: 20,
-    background: "#fff",
-    borderRadius: 8,
-    boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
-  };
-
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 16,
-        maxWidth: 900,
-      }}
-    >
-      <div style={card}>Students: {students.length}</div>
-      <div style={card}>Materials: {materials.length}</div>
-      <div style={card}>Scores: {scores.length}</div>
+    <div>
+      <h1 className="section-title">Teacher Dashboard</h1>
+
+      <div style={{ display: "flex", gap: 20, marginTop: 20 }}>
+        <Card title="Students" value={stats.students} />
+        <Card title="Materials" value={stats.materials} />
+      </div>
+
+      <div style={{ marginTop: 30 }}>
+        <h2 className="section-title">Quick Actions</h2>
+
+        <div style={{ display: "flex", gap: 16 }}>
+          <ActionCard text="Add Score" to="/teacher/scores" />
+          <ActionCard text="Upload Material" to="/teacher/materials" />
+        </div>
+      </div>
     </div>
   );
 }
+
+/* CARD */
+function Card({ title, value }) {
+  return (
+    <div style={{
+      flex: 1,
+      padding: 20,
+      borderRadius: 16,
+      background: "#fff",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
+    }}>
+      <h3 style={{ color: "#666" }}>{title}</h3>
+      <h1 style={{ color: "#20c997", margin: "10px 0" }}>{value}</h1>
+    </div>
+  );
+}
+
+/* ACTION */
+function ActionCard({ text, to }) {
+  const navigate = useNavigate();
+
+  return (
+    <div
+      onClick={() => navigate(to)}
+      style={{
+        padding: 16,
+        borderRadius: 12,
+        background: "#20c997",
+        color: "#fff",
+        cursor: "pointer",
+        flex: 1,
+        textAlign: "center",
+        fontWeight: 500
+      }}
+    >
+      {text}
+    </div>
+  );
+}
+
+export default TeacherDashboard;

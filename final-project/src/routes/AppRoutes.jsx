@@ -25,16 +25,19 @@ function AppRoutes({ user, setUser }) {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Landing/>} />
+                <Route path="/" element={<Landing />} />
 
                 <Route path="/login" element={<Login setUser={setUser} />} />
 
                 {/* ADMIN */}
-                <Route path="/admin" element={
-                    <ProtectedRoute user={user} allowedRoles={["admin"]}>
-                        <AdminLayout setUser={setUser} />
-                    </ProtectedRoute>
-                }>
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute user={user} allowedRoles={["admin"]}>
+                            <AdminLayout setUser={setUser} />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<AdminDashboard />} />
                     <Route path="students" element={<ManageStudents />} />
                     <Route path="teachers" element={<ManageTeachers />} />
@@ -42,22 +45,29 @@ function AppRoutes({ user, setUser }) {
                 </Route>
 
                 {/* TEACHER */}
-                <Route path="/teacher" element={
-                    <ProtectedRoute user={user} allowedRoles={["teacher"]}>
-                        <TeacherLayout />
-                    </ProtectedRoute>
-                }>
+                <Route
+                    path="/teacher"
+                    element={
+                        <ProtectedRoute user={user} allowedRoles={["teacher"]}>
+                            {/* 🔥 FIX QUAN TRỌNG */}
+                            <TeacherLayout user={user} setUser={setUser} />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<TeacherDashboard />} />
                     <Route path="scores" element={<ManageScores />} />
                     <Route path="materials" element={<ManageMaterials />} />
                 </Route>
 
                 {/* STUDENT */}
-                <Route path="/student" element={
-                    <ProtectedRoute user={user} allowedRoles={["student"]}>
-                        <StudentLayout user={user} setUser={setUser}  />
-                    </ProtectedRoute>
-                }>
+                <Route
+                    path="/student"
+                    element={
+                        <ProtectedRoute user={user} allowedRoles={["student"]}>
+                            <StudentLayout user={user} setUser={setUser} />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<Navigate to="profile" replace />} />
                     <Route path="profile" element={<StudentProfile />} />
                     <Route path="schedule" element={<StudentSchedule />} />
