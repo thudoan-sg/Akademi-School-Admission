@@ -19,7 +19,7 @@ function ManageSchedule() {
     const res = await fetch(API);
     const data = await res.json();
 
-    // 🔥 chỉ lấy lịch của teacher hiện tại
+
     const filtered = data.data.data.filter(
       (item) => Number(item.teacherId) === Number(user?.id)
     );
@@ -128,7 +128,7 @@ function ManageSchedule() {
               style={{ marginBottom: 8 }}
             />
 
-            {/* 🔥 subject khóa */}
+        
             <Input value={editing.subject} disabled style={{ marginBottom: 8 }} />
 
             <Input

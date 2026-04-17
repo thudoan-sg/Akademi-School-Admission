@@ -3,7 +3,7 @@ import {
   DashboardOutlined,
   BookOutlined,
   FileTextOutlined,
-  CalendarOutlined, // 👈 thêm
+  CalendarOutlined, 
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -28,7 +28,7 @@ function TeacherSidebar({ setUser }) {
       label: "Materials",
     },
     {
-      key: "/teacher/schedule", // 🔥 NEW
+      key: "/teacher/schedule", 
       icon: <CalendarOutlined />,
       label: "Schedule",
     },

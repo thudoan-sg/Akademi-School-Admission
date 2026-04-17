@@ -12,7 +12,7 @@ function TeacherLayout({ user, setUser }) {
         <div className="dashboard-bg" />
 
         <div style={{ padding: 24, position: "relative", zIndex: 1 }}>
-          {/* 🔥 FIX QUAN TRỌNG */}
+  
           <Outlet context={{ user }} />
         </div>
       </div>

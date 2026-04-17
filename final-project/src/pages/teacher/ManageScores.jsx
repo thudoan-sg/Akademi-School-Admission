@@ -6,7 +6,7 @@ function ManageScores() {
   const { user } = useOutletContext();
 
   const [scores, setScores] = useState([]);
-  const [students, setStudents] = useState([]); // 🔥 thêm
+  const [students, setStudents] = useState([]); 
   const [editing, setEditing] = useState(null);
 
   const SCORE_API =
@@ -33,7 +33,7 @@ function ManageScores() {
 
     setStudents(allStudents);
 
-    // 🔥 FILTER THEO MÔN GIÁO VIÊN
+    
     const filtered = allScores.filter(
       (item) => item.subject === user?.subject
     );
